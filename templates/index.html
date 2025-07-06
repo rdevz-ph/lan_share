@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LocalHost QR Launcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        input {
+            font-size: 18px;
+            padding: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        img {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .copy-btn {
+            margin-left: 10px;
+        }
+
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .watermark a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .watermark a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📡 LocalHost QR Launcher</h1>
+    <p>Scan the QR Code or copy the IP link manually:</p>
+    <img src="/qrcode.png" alt="QR Code"><br><br>
+
+    <input id="ipField" type="text" value="{{ url }}" readonly>
+    <button class="copy-btn" onclick="copyIP()">Copy</button><br><br>
+
+    <a href="/refresh"><button>🔄 Refresh QR</button></a>
+
+    <form method="POST" action="/shutdown">
+        <button type="submit" style="margin-top: 30px; background-color: black; color: white;">🛑 Stop Program</button>
+    </form>
+
+    <div class="watermark">
+        Made with ❤️ by <a href="https://github.com/rdevz-ph" target="_blank">rdevz-ph</a>
+    </div>
+
+    <script>
+        function copyIP() {
+            const field = document.getElementById("ipField");
+            field.select();
+            field.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(field.value);
+            alert("Copied: " + field.value);
+        }
+    </script>
+</body>
+
+</html>
