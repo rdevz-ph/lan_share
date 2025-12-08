@@ -1,5 +1,5 @@
 
-# 📡 LocalHost QR Launcher
+# 📡 LANShare
 
 A lightweight desktop tool that detects your PC's local IPv4 address, generates a QR code for it, and opens a browser-based GUI to share the IP address with other devices on the same Wi-Fi network.
 
@@ -9,8 +9,8 @@ A lightweight desktop tool that detects your PC's local IPv4 address, generates 
 
 ## 🔧 Features
 
-- ✅ Automatically detects your local IPv4 address
-- ✅ Generates a scannable QR code for `http://<your-ip>`
+- ✅ Automatically detects your local IPv4 address and XAMPP port
+- ✅ Generates a scannable QR code for `http://<your-ip>:<port>`
 - ✅ Simple GUI with:
   - IP display and copy button
   - QR code refresh button
@@ -28,7 +28,7 @@ A lightweight desktop tool that detects your PC's local IPv4 address, generates 
 
 ## 🚀 How to Use
 
-1. **Double-click** the `gui_server.exe`
+1. **Double-click** the `lan_share.exe`
 2. The app:
    - Launches your default browser to `http://127.0.0.1:5000`
    - Displays your local IP address and QR code
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 Build the `.exe`:
 ```bash
-pyinstaller --noconsole --onefile --add-data "templates;templates" gui_server.py
+pyinstaller --noconsole --onefile --add-data "templates;templates" lan_share.py
 ```
 
 The compiled executable will be available inside the `dist/` folder.
@@ -56,8 +56,8 @@ The compiled executable will be available inside the `dist/` folder.
 ## 📁 Project Structure
 
 ```
-localhost_qr_launcher/
-├── gui_server.py         # Main launcher logic
+lan_share/
+├── lan_share.py         # Main launcher logic
 ├── templates/
 │   └── index.html        # GUI layout
 ├── README.md
@@ -95,4 +95,4 @@ MIT License — free for personal or commercial use.
 ## 👨‍💻 Author
 
 Developed by [@rdevz-ph](https://github.com/rdevz-ph)  
-Project: **LocalHost QR Launcher**
+Project: **LANShare**

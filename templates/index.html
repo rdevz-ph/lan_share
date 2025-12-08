@@ -3,51 +3,126 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>LocalHost QR Launcher</title>
+    <title>LANShare - Local IP QR Tool</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            text-align: center;
-            padding: 50px;
-            position: relative;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .app {
+            background: #ffffff;
+            width: 420px;
+            padding: 30px 28px 24px;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 6px;
+            margin-bottom: 20px;
+        }
+
+        .qr-box {
+            padding: 15px;
+            border: 1px dashed #cbd5f5;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .qr-box img {
+            width: 220px;
+            height: 220px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
         }
 
         input {
-            font-size: 18px;
-            padding: 10px;
-            width: 300px;
+            flex: 1;
+            font-size: 15px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            outline: none;
             text-align: center;
         }
 
-        img {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-        }
-
         button {
-            margin-top: 20px;
-            padding: 10px 25px;
-            font-size: 16px;
             cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            transition: 0.2s ease;
         }
 
         .copy-btn {
-            margin-left: 10px;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .copy-btn:hover {
+            background: #1e4fd8;
+        }
+
+        .refresh-btn {
+            background: #22c55e;
+            color: #fff;
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        .refresh-btn:hover {
+            background: #16a34a;
+        }
+
+        .stop-btn {
+            background: #020617;
+            color: #fff;
+            width: 100%;
+        }
+
+        .stop-btn:hover {
+            background: #dc2626;
         }
 
         .watermark {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            font-size: 14px;
-            color: #666;
+            margin-top: 18px;
+            font-size: 12px;
+            color: #94a3b8;
         }
 
         .watermark a {
-            color: #666;
+            color: #64748b;
             text-decoration: none;
         }
 
@@ -58,21 +133,33 @@
 </head>
 
 <body>
-    <h1>📡 LocalHost QR Launcher</h1>
-    <p>Scan the QR Code or copy the IP link manually:</p>
-    <img src="/qrcode.png" alt="QR Code"><br><br>
 
-    <input id="ipField" type="text" value="{{ url }}" readonly>
-    <button class="copy-btn" onclick="copyIP()">Copy</button><br><br>
+    <div class="app">
+        <div class="logo">📡</div>
+        <h1>LANShare</h1>
+        <div class="subtitle">Quick IP QR Access for Your Local Network</div>
 
-    <a href="/refresh"><button>🔄 Refresh QR</button></a>
+        <div class="qr-box">
+            <img src="/qrcode.png" alt="QR Code">
+        </div>
 
-    <form method="POST" action="/shutdown">
-        <button type="submit" style="margin-top: 30px; background-color: black; color: white;">🛑 Stop Program</button>
-    </form>
+        <div class="input-group">
+            <input id="ipField" type="text" value="{{ url }}" readonly>
+            <button class="copy-btn" onclick="copyIP()">Copy</button>
+        </div>
 
-    <div class="watermark">
-        Made with ❤️ by <a href="https://github.com/rdevz-ph" target="_blank">rdevz-ph</a>
+        <a href="/refresh">
+            <button class="refresh-btn">🔄 Refresh QR</button>
+        </a>
+
+        <form method="POST" action="/shutdown">
+            <button type="submit" class="stop-btn">🛑 Stop Program</button>
+        </form>
+
+        <div class="watermark">
+            Made with ❤️ by
+            <a href="https://github.com/rdevz-ph" target="_blank">rdevz-ph</a>
+        </div>
     </div>
 
     <script>
@@ -84,6 +171,7 @@
             alert("Copied: " + field.value);
         }
     </script>
+
 </body>
 
 </html>
